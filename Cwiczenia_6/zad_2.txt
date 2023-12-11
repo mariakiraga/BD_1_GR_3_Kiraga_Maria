@@ -1,0 +1,18 @@
+Zadanie 2.
+
+Tabela 1 -> Tabela A, Tabela B, Tabela C, Tabela D
+
+Tabela A:
+DataGodzinaWizyty, IDZabiegu, IDPacjenta, IDPracownika
+
+Tabela B:
+IDZabiegu, NazwaZabiegu
+
+Tabela C:
+IDPacjenta, NazwaPacjenta
+
+Tabela D:
+IDPracownika, NazwaLekarza
+
+
+Tabela 2 -> NazwaProduktu, Dostawca, Ulica, KodPocztowy, Miasto, CenaNetto, CenaBrutto

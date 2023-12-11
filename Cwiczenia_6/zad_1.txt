@@ -1,0 +1,52 @@
+Zadanie 1.
+a)
+UPDATE ksiegowosc.pracownicy
+SET telefon = CONCAT('(+48)', telefon)
+
+b)
+UPDATE ksiegowosc.pracownicy
+SET telefon = OVERLAY(telefon placing '-' from 9 for 0);
+UPDATE ksiegowosc.pracownicy
+SET telefon = OVERLAY(telefon placing '-' from 13 for 0);
+
+c)
+SELECT UPPER(nazwisko) AS najdluzsze_nazwisko
+FROM ksiegowosc.pracownicy
+GROUP BY nazwisko
+ORDER BY LENGTH(nazwisko) desc
+LIMIT 1;
+
+d)
+SELECT nazwisko, MD5(cast(pen.kwota as varchar))
+FROM ksiegowosc.wynagrodzenie as wyn
+JOIN ksiegowosc.pracownicy as pra
+USING(id_pracownika)
+JOIN ksiegowosc.pensja as pen
+USING(id_pensji)
+
+e)
+SELECT nazwisko, pen.kwota AS pensja , pre.kwota AS premia
+FROM ksiegowosc.wynagrodzenie as wyn
+LEFT JOIN ksiegowosc.pracownicy as pra
+USING(id_pracownika)
+LEFT JOIN ksiegowosc.pensja as pen
+USING(id_pensji)
+LEFT JOIN ksiegowosc.premia as pre
+USING(id_premii)
+
+f)
+SELECT CONCAT(
+	'Pracownik ', pra.nazwisko, 
+	', w dniu ', god.data,
+	' otrzymal pensje calkowita na kwote ', pen.kwota+pre.kwota,
+	', gdzie wynagrodzenie zasadnicze wynosilo: ', pen.kwota,
+	', premia: ', pre.kwota) AS wynik
+FROM ksiegowosc.wynagrodzenie as wyn
+JOIN ksiegowosc.pracownicy as pra
+USING(id_pracownika)
+JOIN ksiegowosc.godziny as god
+USING(id_godziny)
+JOIN ksiegowosc.pensja as pen
+USING(id_pensji)
+JOIN ksiegowosc.premia as pre
+USING(id_premii)
