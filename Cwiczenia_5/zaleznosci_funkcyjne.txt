@@ -1,0 +1,29 @@
+Zamowienia (id_produktu, nazwa_produktu, id_klienta, nazwa_klienta, 
+data_zamowienia, cena_produktu, ilość, VAT, suma_brutto, suma_netto)
+
+ZALEŻNOŚCI FUNKCYJNE:
+id_produktu -> nazwa_produktu, cena_produktu, VAT
+nazwa_produktu -> id_produktu, cena_produktu, VAT
+
+nazwa_klienta -> id_klienta
+id_klienta -> nazwa_klienta
+
+data_zamowienia -> suma_brutto, suma_netto, id_produktu ..., id_klienta ...
+suma_brutto -> suma_netto, VAT
+
+KLUCZE KANDYDUJĄCE: 
+data_zamowienia
+
+
+
+Pomieszczenia (id_pomieszczenia, numer_pomieszczenia, id_budynku, 
+powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy)
+
+ZALEŻNOŚCI FUNKCYJNE:
+id_pomieszczenia -> numer_pomieszczenia, id_budynku, powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy
+id_budynku -> ulica, miasto, kod_pocztowy
+ulica -> miasto, kod_pocztowy
+miasto -> kod_pocztowy
+
+KLUCZE KANDYDUJĄCE:
+id_pomieszczenia
