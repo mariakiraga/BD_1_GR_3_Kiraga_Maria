@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION upper_function()
+RETURNS trigger
+AS 
+$$
+BEGIN
+UPDATE person.person
+SET lastname = UPPER(lastname);
+END
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER upper_trigger
+AFTER INSERT
+ON person.person
+FOR EACH ROW
+EXECUTE FUNCTION upper_function();

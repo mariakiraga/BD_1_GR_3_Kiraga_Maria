@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION taxRateMonitoring()
+RETURNS TRIGGER 
+LANGUAGE PLPGSQL
+AS
+$$
+BEGIN
+IF NEW.TaxRate > OLD.TaxRate * 1.3 THEN
+RAISE EXCEPTION 'TaxRate value error: TaxRate too high';
+END IF;
+END;
+$$
+
+CREATE TRIGGER taxRateMonitoring
+BEFORE UPDATE
+ON -- nie moglam znalexc tabeli z polem TaxRate
+FOR EACH ROW
+EXECUTE PROCEDURE taxRateMonitoring();

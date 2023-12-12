@@ -1,0 +1,18 @@
+CREATE OR REPLACE PROCEDURE fibonacci(n integer)
+language plpgsql
+as $$
+declare
+f0 integer := 0;
+f1 integer := 1;
+res integer := 0;
+begin
+raise notice '%', f0;
+raise notice '%', f1;
+for i in 2..(n-1) loop
+res = f0 + f1;
+raise notice '%', res;
+f0 = f1;
+f1 = res;
+end loop;
+end;
+$$
